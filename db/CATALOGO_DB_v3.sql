@@ -30,6 +30,10 @@ GO
 SET ANSI_PADDING OFF
 GO
 
+-- Agregado por el equipo S: columna para baja lógica (coherente con ARTICULOS)
+ALTER TABLE MARCAS ADD Activo bit NOT NULL DEFAULT 1
+GO
+
 SET ANSI_NULLS ON
 GO
 
@@ -51,6 +55,10 @@ CREATE TABLE [dbo].[CATEGORIAS](
 GO
 
 SET ANSI_PADDING OFF
+GO
+
+-- Agregado por el equipo S: columna para baja lógica (coherente con ARTICULOS)
+ALTER TABLE CATEGORIAS ADD Activo bit NOT NULL DEFAULT 1
 GO
 
 SET ANSI_NULLS ON
@@ -92,8 +100,8 @@ create table IMAGENES(
 )
 go
 
-insert into MARCAS values ('Samsung'), ('Apple'), ('Sony'), ('Huawei'), ('Motorola')
-insert into CATEGORIAS values ('Celulares'),('Televisores'), ('Media'), ('Audio')
+insert into MARCAS (Descripcion) values ('Samsung'), ('Apple'), ('Sony'), ('Huawei'), ('Motorola')
+insert into CATEGORIAS (Descripcion) values ('Celulares'),('Televisores'), ('Media'), ('Audio')
 insert into ARTICULOS (Codigo, Nombre, Descripcion, IdMarca, IdCategoria, Precio) values
 ('S01', 'Galaxy S10', 'Una canoa cara', 1, 1, 69.999),
 ('M03', 'Moto G Play 7ma Gen', 'Ya siete de estos?', 1, 5, 15699),
