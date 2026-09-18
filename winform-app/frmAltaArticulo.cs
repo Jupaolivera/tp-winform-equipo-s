@@ -24,7 +24,22 @@ namespace winform_app
 
         private void frmAltaArticulo_Load(object sender, EventArgs e)
         {
-
+            try
+            {
+                // ccargar
+                negocio.MarcaNegocio marcaNegocio = new negocio.MarcaNegocio();
+                cboMarca.DataSource = marcaNegocio.listar();
+                cboMarca.ValueMember = "Id";
+                cboMarca.DisplayMember = "Descripcion";
+                negocio.CategoriaNegocio categoriaNegocio = new negocio.CategoriaNegocio();
+                cboCategoria.DataSource = categoriaNegocio.listar();
+                cboCategoria.ValueMember = "Id";
+                cboCategoria.DisplayMember = "Descripcion";
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
         }
 
         private void label6_Click(object sender, EventArgs e)
@@ -35,6 +50,28 @@ namespace winform_app
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void Aceptar_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                dominio.Articulo nuevo = new dominio.Articulo();
+                negocio.ArticuloNegocio negocio = new negocio.ArticuloNegocio();
+                nuevo.Codigo = txtCodigo.Text;
+                nuevo.Nombre = txtNombre.Text;
+                nuevo.Descripcion = txtDescripcion.Text;
+                nuevo.Precio = decimal.Parse(txtPrecio.Text);
+                nuevo.Marca = (dominio.Marca)cboMarca.SelectedItem;
+                nuevo.Categoria = (dominio.Categoria)cboCategoria.SelectedItem;
+                negocio.agregar(nuevo);
+                MessageBox.Show("Artículo agregado");
+                Close(); 
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
         }
     }
 }
