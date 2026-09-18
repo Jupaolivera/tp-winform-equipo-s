@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -50,6 +50,69 @@ namespace winform_app
         {
             frmAltaArticulo ventanaAlta = new frmAltaArticulo();
             ventanaAlta.ShowDialog();
+
+            negocio.ArticuloNegocio negocio = new negocio.ArticuloNegocio();
+            dgvArticulos.DataSource = negocio.listar();
+        }
+
+        private void Modificar_Click(object sender, EventArgs e)
+        {
+            if (dgvArticulos.CurrentRow == null)
+                return;
+
+            Articulo seleccionado = (Articulo)dgvArticulos.CurrentRow.DataBoundItem;
+
+            frmModificarArticulo ventanaModificar = new frmModificarArticulo(seleccionado);
+            ventanaModificar.ShowDialog();
+
+            negocio.ArticuloNegocio negocio = new negocio.ArticuloNegocio();
+            dgvArticulos.DataSource = negocio.listar();
+        }
+
+        private void Eliminar_Click(object sender, EventArgs e)
+        {
+            if (dgvArticulos.CurrentRow == null)
+                return;
+
+            Articulo seleccionado = (Articulo)dgvArticulos.CurrentRow.DataBoundItem;
+
+            DialogResult confirmacion = MessageBox.Show("¿Eliminar el artículo seleccionado?", "Confirmar", MessageBoxButtons.YesNo);
+            if (confirmacion != DialogResult.Yes)
+                return;
+
+            try
+            {
+                negocio.ArticuloNegocio negocio = new negocio.ArticuloNegocio();
+                negocio.eliminarLogico(seleccionado.Id);
+                dgvArticulos.DataSource = negocio.listar();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+        }
+
+        private void Detalle_Click(object sender, EventArgs e)
+        {
+            if (dgvArticulos.CurrentRow == null)
+                return;
+
+            Articulo seleccionado = (Articulo)dgvArticulos.CurrentRow.DataBoundItem;
+
+            frmDetalleArticulo ventanaDetalle = new frmDetalleArticulo(seleccionado);
+            ventanaDetalle.ShowDialog();
+        }
+
+        private void marcasToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmMarcas ventana = new frmMarcas();
+            ventana.ShowDialog();
+        }
+
+        private void categoriasToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmCategorias ventana = new frmCategorias();
+            ventana.ShowDialog();
         }
     }
 }
