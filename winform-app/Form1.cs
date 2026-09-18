@@ -49,5 +49,12 @@ namespace winform_app
             frmAltaArticulo ventanaAlta = new frmAltaArticulo();
             ventanaAlta.ShowDialog();
         }
+
+        private void btnFiltro_Click(object sender, EventArgs e)
+        {
+            frmFiltroArticulo ventanaFiltro = new frmFiltroArticulo();
+            ventanaFiltro.ShowDialog();
+            
+        }
     }
 }

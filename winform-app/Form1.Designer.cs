@@ -32,6 +32,7 @@
             this.Modificar = new System.Windows.Forms.Button();
             this.Eliminar = new System.Windows.Forms.Button();
             this.Agregar = new System.Windows.Forms.Button();
+            this.btnFiltro = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvArticulos)).BeginInit();
             this.SuspendLayout();
             // 
@@ -72,11 +73,22 @@
             this.Agregar.UseVisualStyleBackColor = true;
             this.Agregar.Click += new System.EventHandler(this.Agregar_Click);
             // 
+            // btnFiltro
+            // 
+            this.btnFiltro.Location = new System.Drawing.Point(508, 266);
+            this.btnFiltro.Name = "btnFiltro";
+            this.btnFiltro.Size = new System.Drawing.Size(75, 23);
+            this.btnFiltro.TabIndex = 4;
+            this.btnFiltro.Text = "Buscar";
+            this.btnFiltro.UseVisualStyleBackColor = true;
+            this.btnFiltro.Click += new System.EventHandler(this.btnFiltro_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.btnFiltro);
             this.Controls.Add(this.Agregar);
             this.Controls.Add(this.Eliminar);
             this.Controls.Add(this.Modificar);
@@ -95,6 +107,7 @@
         private System.Windows.Forms.Button Modificar;
         private System.Windows.Forms.Button Eliminar;
         private System.Windows.Forms.Button Agregar;
+        private System.Windows.Forms.Button btnFiltro;
     }
 }
 
