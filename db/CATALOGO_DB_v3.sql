@@ -30,7 +30,6 @@ GO
 SET ANSI_PADDING OFF
 GO
 
--- Agregado por el equipo S: columna para baja lógica (coherente con ARTICULOS)
 ALTER TABLE MARCAS ADD Activo bit NOT NULL DEFAULT 1
 GO
 
@@ -57,7 +56,6 @@ GO
 SET ANSI_PADDING OFF
 GO
 
--- Agregado por el equipo S: columna para baja lógica (coherente con ARTICULOS)
 ALTER TABLE CATEGORIAS ADD Activo bit NOT NULL DEFAULT 1
 GO
 
@@ -89,7 +87,6 @@ GO
 SET ANSI_PADDING OFF
 GO
 
--- Agregado por el equipo S: columna para baja lógica (no viene en el script original del campus)
 ALTER TABLE ARTICULOS ADD Activo bit NOT NULL DEFAULT 1
 GO
 

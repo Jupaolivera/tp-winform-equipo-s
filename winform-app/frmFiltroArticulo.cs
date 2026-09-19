@@ -10,12 +10,6 @@ using System.Windows.Forms;
 using dominio;
 using negocio;
 
-using System;
-using System.Collections.Generic;
-using System.Windows.Forms;
-using dominio;
-using negocio;
-
 namespace winform_app
 {
     public partial class frmFiltroArticulo : Form
