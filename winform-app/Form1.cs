@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -21,23 +21,25 @@ namespace winform_app
         private void Form1_Load(object sender, EventArgs e)
         {
             //mi part archulo 1 y 2 se borran ya que son de prueba
-            List<Articulo> listaPrueba = new List<Articulo>();
+            /* List<Articulo> listaPrueba = new List<Articulo>();
 
-            Articulo articulo1 = new Articulo();
-            articulo1.Nombre = "PlayStation 5";
-            articulo1.Descripcion = "Consola de videojuegos";
-            articulo1.Precio = 500000;
+             Articulo articulo1 = new Articulo();
+             articulo1.Nombre = "PlayStation 5";
+             articulo1.Descripcion = "Consola de videojuegos";
+             articulo1.Precio = 500000;
 
-            Articulo articulo2 = new Articulo();
-            articulo2.Nombre = "Mouse Inalámbrico";
-            articulo2.Descripcion = "Mouse para PC";
-            articulo2.Precio = 25000;
+             Articulo articulo2 = new Articulo();
+             articulo2.Nombre = "Mouse Inalámbrico";
+             articulo2.Descripcion = "Mouse para PC";
+             articulo2.Precio = 25000;
 
-            listaPrueba.Add(articulo1);
-            listaPrueba.Add(articulo2);
+             listaPrueba.Add(articulo1);
+             listaPrueba.Add(articulo2);
 
-            dgvArticulos.DataSource = listaPrueba;
+             dgvArticulos.DataSource = listaPrueba; */
 
+            negocio.ArticuloNegocio negocio = new negocio.ArticuloNegocio();
+            dgvArticulos.DataSource = negocio.listar();
         }
 
         private void dgvArticulos_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -48,6 +50,69 @@ namespace winform_app
         {
             frmAltaArticulo ventanaAlta = new frmAltaArticulo();
             ventanaAlta.ShowDialog();
+
+            negocio.ArticuloNegocio negocio = new negocio.ArticuloNegocio();
+            dgvArticulos.DataSource = negocio.listar();
+        }
+
+        private void Modificar_Click(object sender, EventArgs e)
+        {
+            if (dgvArticulos.CurrentRow == null)
+                return;
+
+            Articulo seleccionado = (Articulo)dgvArticulos.CurrentRow.DataBoundItem;
+
+            frmModificarArticulo ventanaModificar = new frmModificarArticulo(seleccionado);
+            ventanaModificar.ShowDialog();
+
+            negocio.ArticuloNegocio negocio = new negocio.ArticuloNegocio();
+            dgvArticulos.DataSource = negocio.listar();
+        }
+
+        private void Eliminar_Click(object sender, EventArgs e)
+        {
+            if (dgvArticulos.CurrentRow == null)
+                return;
+
+            Articulo seleccionado = (Articulo)dgvArticulos.CurrentRow.DataBoundItem;
+
+            DialogResult confirmacion = MessageBox.Show("¿Eliminar el artículo seleccionado?", "Confirmar", MessageBoxButtons.YesNo);
+            if (confirmacion != DialogResult.Yes)
+                return;
+
+            try
+            {
+                negocio.ArticuloNegocio negocio = new negocio.ArticuloNegocio();
+                negocio.eliminarLogico(seleccionado.Id);
+                dgvArticulos.DataSource = negocio.listar();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+        }
+
+        private void Detalle_Click(object sender, EventArgs e)
+        {
+            if (dgvArticulos.CurrentRow == null)
+                return;
+
+            Articulo seleccionado = (Articulo)dgvArticulos.CurrentRow.DataBoundItem;
+
+            frmDetalleArticulo ventanaDetalle = new frmDetalleArticulo(seleccionado);
+            ventanaDetalle.ShowDialog();
+        }
+
+        private void marcasToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmMarcas ventana = new frmMarcas();
+            ventana.ShowDialog();
+        }
+
+        private void categoriasToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmCategorias ventana = new frmCategorias();
+            ventana.ShowDialog();
         }
 
         private void btnFiltro_Click(object sender, EventArgs e)

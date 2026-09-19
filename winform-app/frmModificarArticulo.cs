@@ -1,11 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System;
 using System.Windows.Forms;
 using dominio;
 using negocio;
@@ -16,36 +9,30 @@ namespace winform_app
     {
         private Articulo articulo;
 
-        // Constructor que recibe el artículo seleccionado
         public frmModificarArticulo(Articulo articulo)
         {
             InitializeComponent();
             this.articulo = articulo;
-            Text = "Modificar Artículo";
         }
 
         private void frmModificarArticulo_Load(object sender, EventArgs e)
         {
-            MarcaNegocio marcaNegocio = new MarcaNegocio();
-            CategoriaNegocio categoriaNegocio = new CategoriaNegocio();
-
             try
             {
-                // Cargar desplegables
+                MarcaNegocio marcaNegocio = new MarcaNegocio();
                 cboMarca.DataSource = marcaNegocio.listar();
                 cboMarca.ValueMember = "Id";
                 cboMarca.DisplayMember = "Descripcion";
 
+                CategoriaNegocio categoriaNegocio = new CategoriaNegocio();
                 cboCategoria.DataSource = categoriaNegocio.listar();
                 cboCategoria.ValueMember = "Id";
                 cboCategoria.DisplayMember = "Descripcion";
 
-                // Pre-cargar los campos con los datos del artículo seleccionado
                 txtCodigo.Text = articulo.Codigo;
                 txtNombre.Text = articulo.Nombre;
                 txtDescripcion.Text = articulo.Descripcion;
                 txtPrecio.Text = articulo.Precio.ToString();
-
                 cboMarca.SelectedValue = articulo.Marca.Id;
                 cboCategoria.SelectedValue = articulo.Categoria.Id;
             }
@@ -55,10 +42,8 @@ namespace winform_app
             }
         }
 
-        private void btnAceptar_Click(object sender, EventArgs e)
+        private void Aceptar_Click(object sender, EventArgs e)
         {
-            ArticuloNegocio negocio = new ArticuloNegocio();
-
             try
             {
                 articulo.Codigo = txtCodigo.Text;
@@ -68,10 +53,10 @@ namespace winform_app
                 articulo.Marca = (Marca)cboMarca.SelectedItem;
                 articulo.Categoria = (Categoria)cboCategoria.SelectedItem;
 
-                // Llama al UPDATE en SQL
-                negocio.modificar(articulo);
-                MessageBox.Show("Artículo modificado exitosamente.");
+                ArticuloNegocio articuloNegocio = new ArticuloNegocio();
+                articuloNegocio.modificar(articulo);
 
+                MessageBox.Show("Artículo modificado");
                 Close();
             }
             catch (Exception ex)
@@ -80,19 +65,9 @@ namespace winform_app
             }
         }
 
-        private void btnCancelar_Click(object sender, EventArgs e)
-        {
-            Close();
-        }
-
-        private void Aceptar_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void Cancelar_Click(object sender, EventArgs e)
         {
-
+            Close();
         }
     }
 }
