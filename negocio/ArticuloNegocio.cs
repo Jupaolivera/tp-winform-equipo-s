@@ -40,9 +40,6 @@ namespace negocio
             }
         }
 
-        // Búsqueda por nombre (contiene). Punto de partida simple para la
-        // "búsqueda por distintos criterios" que pide la consigna; se puede
-        // extender más adelante para filtrar también por marca/categoria.
         public List<Articulo> filtrar(string nombre)
         {
             AccesoDatos datos = new AccesoDatos();
@@ -94,9 +91,7 @@ namespace negocio
                 datos.setearParametro("@IdCategoria", articulo.Categoria.Id);
                 datos.setearParametro("@Precio", articulo.Precio);
                 datos.ejecutarAccion();
-
-                // Pendiente: persistir articulo.Imagenes. Queda afuera de este
-                // cambio a propósito, lo encaramos en equipo (multi-imagen).
+                // falta guardar articulo.Imagenes
             }
             catch (Exception ex)
             {
@@ -157,9 +152,6 @@ namespace negocio
             }
         }
 
-        // Arma un Articulo completo (con su Marca y Categoria) a partir de la
-        // fila actual del Lector. Se reutiliza en listar() y filtrar() para no
-        // repetir el mapeo dos veces.
         private Articulo mapearArticulo(AccesoDatos datos)
         {
             Articulo articulo = new Articulo();

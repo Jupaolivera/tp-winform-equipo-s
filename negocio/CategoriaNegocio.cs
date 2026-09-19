@@ -80,8 +80,6 @@ namespace negocio
             }
         }
 
-        // Corregido: baja lógica en vez de DELETE físico, para ser consistentes
-        // con el criterio acordado en equipo (mismo que ARTICULOS).
         public void eliminar(int id)
         {
             AccesoDatos datos = new AccesoDatos();
