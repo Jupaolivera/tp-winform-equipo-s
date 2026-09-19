@@ -60,7 +60,8 @@
             this.btnBuscar.TabIndex = 2;
             this.btnBuscar.Text = "Buscar";
             this.btnBuscar.UseVisualStyleBackColor = true;
-            // 
+            this.btnBuscar.Click += new System.EventHandler(this.btnBuscar_Click);
+            //
             // dgvResultado
             // 
             this.dgvResultado.AccessibleName = "";
@@ -82,6 +83,7 @@
             this.Controls.Add(this.label1);
             this.Name = "frmFiltroArticulo";
             this.Text = "frmFiltroArticulo";
+            this.Load += new System.EventHandler(this.frmFiltroArticulo_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvResultado)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

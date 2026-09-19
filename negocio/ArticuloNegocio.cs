@@ -91,7 +91,6 @@ namespace negocio
                 datos.setearParametro("@IdCategoria", articulo.Categoria.Id);
                 datos.setearParametro("@Precio", articulo.Precio);
                 datos.ejecutarAccion();
-                // falta guardar articulo.Imagenes
             }
             catch (Exception ex)
             {

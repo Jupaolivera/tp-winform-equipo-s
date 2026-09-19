@@ -30,6 +30,10 @@ namespace winform_app
             this.txtCategoria = new System.Windows.Forms.TextBox();
             this.txtPrecio = new System.Windows.Forms.TextBox();
             this.btnCerrar = new System.Windows.Forms.Button();
+            this.lblImagenes = new System.Windows.Forms.Label();
+            this.lstImagenes = new System.Windows.Forms.ListBox();
+            this.pbImagen = new System.Windows.Forms.PictureBox();
+            ((System.ComponentModel.ISupportInitialize)(this.pbImagen)).BeginInit();
             this.SuspendLayout();
             //
             // lblCodigo
@@ -144,11 +148,42 @@ namespace winform_app
             this.btnCerrar.UseVisualStyleBackColor = true;
             this.btnCerrar.Click += new System.EventHandler(this.btnCerrar_Click);
             //
+            // lblImagenes
+            //
+            this.lblImagenes.AutoSize = true;
+            this.lblImagenes.Location = new System.Drawing.Point(330, 12);
+            this.lblImagenes.Name = "lblImagenes";
+            this.lblImagenes.Size = new System.Drawing.Size(53, 13);
+            this.lblImagenes.TabIndex = 13;
+            this.lblImagenes.Text = "Imágenes";
+            //
+            // lstImagenes
+            //
+            this.lstImagenes.FormattingEnabled = true;
+            this.lstImagenes.Location = new System.Drawing.Point(330, 32);
+            this.lstImagenes.Name = "lstImagenes";
+            this.lstImagenes.Size = new System.Drawing.Size(180, 134);
+            this.lstImagenes.TabIndex = 14;
+            this.lstImagenes.SelectedIndexChanged += new System.EventHandler(this.lstImagenes_SelectedIndexChanged);
+            //
+            // pbImagen
+            //
+            this.pbImagen.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pbImagen.Location = new System.Drawing.Point(330, 170);
+            this.pbImagen.Name = "pbImagen";
+            this.pbImagen.Size = new System.Drawing.Size(180, 60);
+            this.pbImagen.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pbImagen.TabIndex = 15;
+            this.pbImagen.TabStop = false;
+            //
             // frmDetalleArticulo
             //
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(330, 240);
+            this.ClientSize = new System.Drawing.Size(530, 260);
+            this.Controls.Add(this.pbImagen);
+            this.Controls.Add(this.lstImagenes);
+            this.Controls.Add(this.lblImagenes);
             this.Controls.Add(this.btnCerrar);
             this.Controls.Add(this.txtPrecio);
             this.Controls.Add(this.txtCategoria);
@@ -165,6 +200,7 @@ namespace winform_app
             this.Name = "frmDetalleArticulo";
             this.Text = "Detalle del Artículo";
             this.Load += new System.EventHandler(this.frmDetalleArticulo_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.pbImagen)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -185,5 +221,8 @@ namespace winform_app
         private System.Windows.Forms.TextBox txtCategoria;
         private System.Windows.Forms.TextBox txtPrecio;
         private System.Windows.Forms.Button btnCerrar;
+        private System.Windows.Forms.Label lblImagenes;
+        private System.Windows.Forms.ListBox lstImagenes;
+        private System.Windows.Forms.PictureBox pbImagen;
     }
 }

@@ -1,6 +1,7 @@
 using System;
 using System.Windows.Forms;
 using dominio;
+using negocio;
 
 namespace winform_app
 {
@@ -22,6 +23,26 @@ namespace winform_app
             txtMarca.Text = articulo.Marca.Descripcion;
             txtCategoria.Text = articulo.Categoria.Descripcion;
             txtPrecio.Text = articulo.Precio.ToString();
+
+            ImagenNegocio imagenNegocio = new ImagenNegocio();
+            lstImagenes.DataSource = imagenNegocio.listar(articulo.Id);
+            lstImagenes.DisplayMember = "ImagenUrl";
+        }
+
+        private void lstImagenes_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Imagen seleccionada = (Imagen)lstImagenes.SelectedItem;
+            if (seleccionada == null)
+                return;
+
+            try
+            {
+                pbImagen.Load(seleccionada.ImagenUrl);
+            }
+            catch (Exception)
+            {
+                pbImagen.Image = null;
+            }
         }
 
         private void btnCerrar_Click(object sender, EventArgs e)

@@ -8,6 +8,7 @@ namespace winform_app
     public partial class frmModificarArticulo : Form
     {
         private Articulo articulo;
+        private ImagenNegocio imagenNegocio = new ImagenNegocio();
 
         public frmModificarArticulo(Articulo articulo)
         {
@@ -35,6 +36,69 @@ namespace winform_app
                 txtPrecio.Text = articulo.Precio.ToString();
                 cboMarca.SelectedValue = articulo.Marca.Id;
                 cboCategoria.SelectedValue = articulo.Categoria.Id;
+
+                cargarImagenes();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+        }
+
+        private void cargarImagenes()
+        {
+            lstImagenes.DataSource = imagenNegocio.listar(articulo.Id);
+            lstImagenes.DisplayMember = "ImagenUrl";
+            pbImagen.Image = null;
+        }
+
+        private void lstImagenes_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Imagen seleccionada = (Imagen)lstImagenes.SelectedItem;
+            if (seleccionada == null)
+                return;
+
+            try
+            {
+                pbImagen.Load(seleccionada.ImagenUrl);
+            }
+            catch (Exception)
+            {
+                pbImagen.Image = null;
+            }
+        }
+
+        private void btnAgregarImagen_Click(object sender, EventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(txtNuevaImagen.Text))
+                return;
+
+            try
+            {
+                Imagen nueva = new Imagen();
+                nueva.IdArticulo = articulo.Id;
+                nueva.ImagenUrl = txtNuevaImagen.Text.Trim();
+
+                imagenNegocio.agregar(nueva);
+                txtNuevaImagen.Text = "";
+                cargarImagenes();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+        }
+
+        private void btnQuitarImagen_Click(object sender, EventArgs e)
+        {
+            Imagen seleccionada = (Imagen)lstImagenes.SelectedItem;
+            if (seleccionada == null)
+                return;
+
+            try
+            {
+                imagenNegocio.eliminar(seleccionada.Id);
+                cargarImagenes();
             }
             catch (Exception ex)
             {
