@@ -31,6 +31,13 @@ namespace winform_app
             this.cboCategoria = new System.Windows.Forms.ComboBox();
             this.Aceptar = new System.Windows.Forms.Button();
             this.Cancelar = new System.Windows.Forms.Button();
+            this.lblImagenes = new System.Windows.Forms.Label();
+            this.lstImagenes = new System.Windows.Forms.ListBox();
+            this.txtNuevaImagen = new System.Windows.Forms.TextBox();
+            this.btnAgregarImagen = new System.Windows.Forms.Button();
+            this.btnQuitarImagen = new System.Windows.Forms.Button();
+            this.pbImagen = new System.Windows.Forms.PictureBox();
+            ((System.ComponentModel.ISupportInitialize)(this.pbImagen)).BeginInit();
             this.SuspendLayout();
             //
             // Codigo
@@ -151,11 +158,72 @@ namespace winform_app
             this.Cancelar.UseVisualStyleBackColor = true;
             this.Cancelar.Click += new System.EventHandler(this.Cancelar_Click);
             //
+            // lblImagenes
+            //
+            this.lblImagenes.AutoSize = true;
+            this.lblImagenes.Location = new System.Drawing.Point(730, 15);
+            this.lblImagenes.Name = "lblImagenes";
+            this.lblImagenes.Size = new System.Drawing.Size(53, 13);
+            this.lblImagenes.TabIndex = 15;
+            this.lblImagenes.Text = "Imágenes";
+            //
+            // lstImagenes
+            //
+            this.lstImagenes.FormattingEnabled = true;
+            this.lstImagenes.Location = new System.Drawing.Point(730, 35);
+            this.lstImagenes.Name = "lstImagenes";
+            this.lstImagenes.Size = new System.Drawing.Size(180, 134);
+            this.lstImagenes.TabIndex = 16;
+            this.lstImagenes.SelectedIndexChanged += new System.EventHandler(this.lstImagenes_SelectedIndexChanged);
+            //
+            // txtNuevaImagen
+            //
+            this.txtNuevaImagen.Location = new System.Drawing.Point(730, 173);
+            this.txtNuevaImagen.Name = "txtNuevaImagen";
+            this.txtNuevaImagen.Size = new System.Drawing.Size(180, 20);
+            this.txtNuevaImagen.TabIndex = 17;
+            //
+            // btnAgregarImagen
+            //
+            this.btnAgregarImagen.Location = new System.Drawing.Point(730, 199);
+            this.btnAgregarImagen.Name = "btnAgregarImagen";
+            this.btnAgregarImagen.Size = new System.Drawing.Size(180, 23);
+            this.btnAgregarImagen.TabIndex = 18;
+            this.btnAgregarImagen.Text = "Agregar imagen";
+            this.btnAgregarImagen.UseVisualStyleBackColor = true;
+            this.btnAgregarImagen.Click += new System.EventHandler(this.btnAgregarImagen_Click);
+            //
+            // btnQuitarImagen
+            //
+            this.btnQuitarImagen.Location = new System.Drawing.Point(730, 225);
+            this.btnQuitarImagen.Name = "btnQuitarImagen";
+            this.btnQuitarImagen.Size = new System.Drawing.Size(180, 23);
+            this.btnQuitarImagen.TabIndex = 19;
+            this.btnQuitarImagen.Text = "Quitar imagen";
+            this.btnQuitarImagen.UseVisualStyleBackColor = true;
+            this.btnQuitarImagen.Click += new System.EventHandler(this.btnQuitarImagen_Click);
+            //
+            // pbImagen
+            //
+            this.pbImagen.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pbImagen.Location = new System.Drawing.Point(730, 254);
+            this.pbImagen.Name = "pbImagen";
+            this.pbImagen.Size = new System.Drawing.Size(180, 100);
+            this.pbImagen.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pbImagen.TabIndex = 20;
+            this.pbImagen.TabStop = false;
+            //
             // frmModificarArticulo
             //
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(892, 402);
+            this.ClientSize = new System.Drawing.Size(922, 402);
+            this.Controls.Add(this.pbImagen);
+            this.Controls.Add(this.btnQuitarImagen);
+            this.Controls.Add(this.btnAgregarImagen);
+            this.Controls.Add(this.txtNuevaImagen);
+            this.Controls.Add(this.lstImagenes);
+            this.Controls.Add(this.lblImagenes);
             this.Controls.Add(this.Cancelar);
             this.Controls.Add(this.Aceptar);
             this.Controls.Add(this.cboCategoria);
@@ -173,6 +241,7 @@ namespace winform_app
             this.Name = "frmModificarArticulo";
             this.Text = "frmModificarArticulo";
             this.Load += new System.EventHandler(this.frmModificarArticulo_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.pbImagen)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -194,5 +263,11 @@ namespace winform_app
         private System.Windows.Forms.ComboBox cboCategoria;
         private System.Windows.Forms.Button Aceptar;
         private System.Windows.Forms.Button Cancelar;
+        private System.Windows.Forms.Label lblImagenes;
+        private System.Windows.Forms.ListBox lstImagenes;
+        private System.Windows.Forms.TextBox txtNuevaImagen;
+        private System.Windows.Forms.Button btnAgregarImagen;
+        private System.Windows.Forms.Button btnQuitarImagen;
+        private System.Windows.Forms.PictureBox pbImagen;
     }
 }
