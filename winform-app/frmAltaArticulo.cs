@@ -73,5 +73,10 @@ namespace winform_app
                 MessageBox.Show(ex.ToString());
             }
         }
+
+        private void Cancelar_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
     }
 }

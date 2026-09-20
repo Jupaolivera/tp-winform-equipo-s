@@ -30,8 +30,8 @@ namespace negocio
 
                 return lista;
             }
-            catch (Exception ex)
-            {
+            catch (Exception ex){
+            
                 throw ex;
             }
             finally

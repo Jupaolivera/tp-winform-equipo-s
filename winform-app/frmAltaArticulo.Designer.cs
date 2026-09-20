@@ -163,6 +163,7 @@
             this.Cancelar.TabIndex = 14;
             this.Cancelar.Text = "Cancelar";
             this.Cancelar.UseVisualStyleBackColor = true;
+            this.Cancelar.Click += new System.EventHandler(this.Cancelar_Click);
             // 
             // frmAltaArticulo
             // 
