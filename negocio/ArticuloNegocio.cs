@@ -14,13 +14,12 @@ namespace negocio
             try
             {
                 datos.setearConsulta(
-                    "SELECT A.Id, A.Codigo, A.Nombre, A.Descripcion, A.Precio, A.Activo, " +
+                    "SELECT A.Id, A.Codigo, A.Nombre, A.Descripcion, A.Precio, " +
                     "       A.IdMarca, M.Descripcion AS MarcaDescripcion, " +
                     "       A.IdCategoria, C.Descripcion AS CategoriaDescripcion " +
                     "FROM ARTICULOS A " +
                     "INNER JOIN MARCAS M ON A.IdMarca = M.Id " +
-                    "INNER JOIN CATEGORIAS C ON A.IdCategoria = C.Id " +
-                    "WHERE A.Activo = 1");
+                    "INNER JOIN CATEGORIAS C ON A.IdCategoria = C.Id ");
                 datos.ejecutarLectura();
 
                 while (datos.Lector.Read())
@@ -30,8 +29,8 @@ namespace negocio
 
                 return lista;
             }
-            catch (Exception ex){
-            
+            catch (Exception ex)
+            {
                 throw ex;
             }
             finally
@@ -48,13 +47,13 @@ namespace negocio
             try
             {
                 datos.setearConsulta(
-                    "SELECT A.Id, A.Codigo, A.Nombre, A.Descripcion, A.Precio, A.Activo, " +
+                    "SELECT A.Id, A.Codigo, A.Nombre, A.Descripcion, A.Precio, " +
                     "       A.IdMarca, M.Descripcion AS MarcaDescripcion, " +
                     "       A.IdCategoria, C.Descripcion AS CategoriaDescripcion " +
                     "FROM ARTICULOS A " +
                     "INNER JOIN MARCAS M ON A.IdMarca = M.Id " +
                     "INNER JOIN CATEGORIAS C ON A.IdCategoria = C.Id " +
-                    "WHERE A.Activo = 1 AND A.Nombre LIKE @Nombre");
+                    "WHERE A.Nombre LIKE @Nombre");
                 datos.setearParametro("@Nombre", "%" + nombre + "%");
                 datos.ejecutarLectura();
 
@@ -131,13 +130,13 @@ namespace negocio
             }
         }
 
-        public void eliminarLogico(int id)
+        public void eliminar(int id)
         {
             AccesoDatos datos = new AccesoDatos();
 
             try
             {
-                datos.setearConsulta("UPDATE ARTICULOS SET Activo = 0 WHERE Id = @Id");
+                datos.setearConsulta("DELETE FROM ARTICULOS WHERE Id = @Id");
                 datos.setearParametro("@Id", id);
                 datos.ejecutarAccion();
             }
@@ -160,7 +159,6 @@ namespace negocio
             articulo.Nombre = (string)datos.Lector["Nombre"];
             articulo.Descripcion = (string)datos.Lector["Descripcion"];
             articulo.Precio = (decimal)datos.Lector["Precio"];
-            articulo.Activo = (bool)datos.Lector["Activo"];
 
             articulo.Marca = new Marca();
             articulo.Marca.Id = (int)datos.Lector["IdMarca"];

@@ -13,7 +13,7 @@ namespace negocio
 
             try
             {
-                datos.setearConsulta("SELECT Id, Descripcion, Activo FROM MARCAS WHERE Activo = 1");
+                datos.setearConsulta("SELECT Id, Descripcion FROM MARCAS");
                 datos.ejecutarLectura();
 
                 while (datos.Lector.Read())
@@ -22,7 +22,6 @@ namespace negocio
 
                     aux.Id = (int)datos.Lector["Id"];
                     aux.Descripcion = (string)datos.Lector["Descripcion"];
-                    aux.Activo = (bool)datos.Lector["Activo"];
 
                     lista.Add(aux);
                 }
@@ -86,7 +85,7 @@ namespace negocio
 
             try
             {
-                datos.setearConsulta("UPDATE MARCAS SET Activo = 0 WHERE Id = @Id");
+                datos.setearConsulta("DELETE FROM MARCAS WHERE Id = @Id");
                 datos.setearParametro("@Id", id);
                 datos.ejecutarAccion();
             }

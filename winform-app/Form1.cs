@@ -83,7 +83,7 @@ namespace winform_app
             try
             {
                 negocio.ArticuloNegocio negocio = new negocio.ArticuloNegocio();
-                negocio.eliminarLogico(seleccionado.Id);
+                negocio.eliminar(seleccionado.Id);
                 dgvArticulos.DataSource = negocio.listar();
             }
             catch (Exception ex)

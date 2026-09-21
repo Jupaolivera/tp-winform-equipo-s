@@ -19,7 +19,7 @@ GO
 CREATE TABLE [dbo].[MARCAS](
 	[Id] [int] IDENTITY(1,1) NOT NULL,
 	[Descripcion] [varchar](50) NULL,
- CONSTRAINT [PK_MARCAS] PRIMARY KEY CLUSTERED
+ CONSTRAINT [PK_MARCAS] PRIMARY KEY CLUSTERED 
 (
 	[Id] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
@@ -28,9 +28,6 @@ CREATE TABLE [dbo].[MARCAS](
 GO
 
 SET ANSI_PADDING OFF
-GO
-
-ALTER TABLE MARCAS ADD Activo bit NOT NULL DEFAULT 1
 GO
 
 SET ANSI_NULLS ON
@@ -45,7 +42,7 @@ GO
 CREATE TABLE [dbo].[CATEGORIAS](
 	[Id] [int] IDENTITY(1,1) NOT NULL,
 	[Descripcion] [varchar](50) NULL,
- CONSTRAINT [PK_CATEGORIAS] PRIMARY KEY CLUSTERED
+ CONSTRAINT [PK_CATEGORIAS] PRIMARY KEY CLUSTERED 
 (
 	[Id] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
@@ -54,9 +51,6 @@ CREATE TABLE [dbo].[CATEGORIAS](
 GO
 
 SET ANSI_PADDING OFF
-GO
-
-ALTER TABLE CATEGORIAS ADD Activo bit NOT NULL DEFAULT 1
 GO
 
 SET ANSI_NULLS ON
@@ -76,7 +70,7 @@ CREATE TABLE [dbo].[ARTICULOS](
 	[IdMarca] [int] NULL,
 	[IdCategoria] [int] NULL,
 	[Precio] [money] NULL,
- CONSTRAINT [PK_ARTICULOS] PRIMARY KEY CLUSTERED
+ CONSTRAINT [PK_ARTICULOS] PRIMARY KEY CLUSTERED 
 (
 	[Id] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
@@ -87,9 +81,6 @@ GO
 SET ANSI_PADDING OFF
 GO
 
-ALTER TABLE ARTICULOS ADD Activo bit NOT NULL DEFAULT 1
-GO
-
 create table IMAGENES(
 	Id int IDENTITY(1,1) not null,
 	IdArticulo int not null,
@@ -97,10 +88,9 @@ create table IMAGENES(
 )
 go
 
-insert into MARCAS (Descripcion) values ('Samsung'), ('Apple'), ('Sony'), ('Huawei'), ('Motorola')
-insert into CATEGORIAS (Descripcion) values ('Celulares'),('Televisores'), ('Media'), ('Audio')
-insert into ARTICULOS (Codigo, Nombre, Descripcion, IdMarca, IdCategoria, Precio) values
-('S01', 'Galaxy S10', 'Una canoa cara', 1, 1, 69.999),
+insert into MARCAS values ('Samsung'), ('Apple'), ('Sony'), ('Huawei'), ('Motorola')
+insert into CATEGORIAS values ('Celulares'),('Televisores'), ('Media'), ('Audio')
+insert into ARTICULOS values ('S01', 'Galaxy S10', 'Una canoa cara', 1, 1, 69.999),
 ('M03', 'Moto G Play 7ma Gen', 'Ya siete de estos?', 1, 5, 15699),
 ('S99', 'Play 4', 'Ya no se cuantas versiones hay', 3, 3, 35000),
 ('S56', 'Bravia 55', 'Alta tele', 3, 2, 49500),
