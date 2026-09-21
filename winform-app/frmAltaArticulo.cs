@@ -31,6 +31,7 @@ namespace winform_app
                 cboMarca.DataSource = marcaNegocio.listar();
                 cboMarca.ValueMember = "Id";
                 cboMarca.DisplayMember = "Descripcion";
+
                 negocio.CategoriaNegocio categoriaNegocio = new negocio.CategoriaNegocio();
                 cboCategoria.DataSource = categoriaNegocio.listar();
                 cboCategoria.ValueMember = "Id";
@@ -54,19 +55,34 @@ namespace winform_app
 
         private void Aceptar_Click(object sender, EventArgs e)
         {
+           
+            if (string.IsNullOrWhiteSpace(txtCodigo.Text) || string.IsNullOrWhiteSpace(txtNombre.Text))
+            {
+                MessageBox.Show("Código y Nombre son obligatorios.");
+                return;
+            }
+
+            if (cboMarca.SelectedItem == null || cboCategoria.SelectedItem == null)
+            {
+                MessageBox.Show("Seleccioná una Marca y una Categoría.");
+                return;
+            }
+
             try
             {
                 dominio.Articulo nuevo = new dominio.Articulo();
                 negocio.ArticuloNegocio negocio = new negocio.ArticuloNegocio();
+
                 nuevo.Codigo = txtCodigo.Text;
                 nuevo.Nombre = txtNombre.Text;
                 nuevo.Descripcion = txtDescripcion.Text;
                 nuevo.Precio = decimal.Parse(txtPrecio.Text);
                 nuevo.Marca = (dominio.Marca)cboMarca.SelectedItem;
                 nuevo.Categoria = (dominio.Categoria)cboCategoria.SelectedItem;
+
                 negocio.agregar(nuevo);
                 MessageBox.Show("Artículo agregado");
-                Close(); 
+                Close();
             }
             catch (Exception ex)
             {
